@@ -14,16 +14,24 @@
         android:theme="@style/Theme.Kotlin"
         tools:targetApi="31">
         <activity
-            android:name=".FunctionActivity"
+            android:name=".GetterAndSetterActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".InheritActivity$SubClass"/>
         <activity-alias
-            android:name="getterAndSetter"
-            android:targetActivity=".FunctionActivity">
+            android:label="Inherit"
+            android:name="InheritActivity$SubClass"
+            android:targetActivity=".InheritActivity$SubClass"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity-alias>
     </application>
 
