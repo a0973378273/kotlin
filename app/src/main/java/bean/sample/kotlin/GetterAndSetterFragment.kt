@@ -1,9 +1,12 @@
 package bean.sample.kotlin
 
-import bean.sample.kotlin.databinding.ActivitySpaceBinding
-import priv.jb.base.basic.BaseActivity
+import bean.sample.kotlin.databinding.FragmentSpaceBinding
+import priv.jb.base.basic.BaseFragment
 
-class GetterAndSetterActivity : BaseActivity<ActivitySpaceBinding>() {
+class GetterAndSetterFragment : BaseFragment<FragmentSpaceBinding>() {
+
+    override fun init() {}
+
     //唯讀
     val name: String
         get() = "Bill"

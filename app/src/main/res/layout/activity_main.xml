@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/table_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <Button
+            android:id="@+id/button_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="file" />
+
+        <Button
+            android:id="@+id/button_function"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="function" />
+
+        <Button
+            android:id="@+id/button_get_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GetAndSet" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <Button
+            android:id="@+id/button_handler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="handler" />
+
+        <Button
+            android:id="@+id/button_inherit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="inherit" />
+
+        <Button
+            android:id="@+id/button_print_exception"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PrintException" />
+    </TableRow>
+</TableLayout>

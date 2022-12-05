@@ -9,33 +9,29 @@ import android.provider.DocumentsContract
 import android.provider.Settings
 import android.util.Log
 import androidx.annotation.RequiresApi
-import androidx.core.content.PermissionChecker
-import bean.sample.kotlin.databinding.ActivitySpaceBinding
-import bean.sample.util.versionAboveR
-import priv.jb.base.basic.BaseActivity
+import androidx.annotation.RequiresPermission
+import bean.sample.kotlin.databinding.FragmentSpaceBinding
+import priv.jb.base.basic.BaseFragment
 
 /**
- * ~ Android 9 - READ_EXTERNAL_STORAGE + WRITE_EXTERNAL_STORAGE
+ * below ~ Android 9 - READ_EXTERNAL_STORAGE + WRITE_EXTERNAL_STORAGE
  * Android 10 - READ_EXTERNAL_STORAGE + WRITE_EXTERNAL_STORAGE + android:requestLegacyExternalStorage="true"
  * Android 11 ~ Above - MANAGE_EXTERNAL_STORAGE + obb/data to use SAF
- * @return Granted file permission
  */
-class FileActivity : BaseActivity<ActivitySpaceBinding>() {
+class FileFragment : BaseFragment<FragmentSpaceBinding>() {
+
+    override fun init() {
+        checkAndRequestWritePermission {
+
+        }
+    }
 
     override fun initAction() {
-        storageAccessFrameworkRootUri()
+//        storageAccessFrameworkRootUri()
     }
 
     override fun initView() {
-        if (versionAboveR) {
-            var isExternalStoragePermission = Environment.isExternalStorageManager()
-            Log.d("SDCardPermission", "$isExternalStoragePermission")
-        }
-        var isReadExternalStoragePermission = PermissionChecker.checkSelfPermission(
-            this,
-            Manifest.permission.READ_EXTERNAL_STORAGE
-        ) == PermissionChecker.PERMISSION_GRANTED
-        Log.d("ReadFilePermission", "$isReadExternalStoragePermission")
+
     }
 
     /**
@@ -52,12 +48,13 @@ class FileActivity : BaseActivity<ActivitySpaceBinding>() {
         }
     }
 
-
+    @RequiresPermission(Manifest.permission.MANAGE_EXTERNAL_STORAGE)
     @RequiresApi(Build.VERSION_CODES.R)
     private fun isAllFilesAccessPermission(): Boolean = Environment.isExternalStorageManager()
 
+    @RequiresPermission(Manifest.permission.MANAGE_EXTERNAL_STORAGE)
     @RequiresApi(Build.VERSION_CODES.R)
-    private fun requestAllFilesAccess(action: (isGrant: Boolean) -> Unit){
+    private fun requestAllFilesAccess(action: (isGrant: Boolean) -> Unit) {
         if (isAllFilesAccessPermission()) {
             action.invoke(true)
         } else {
@@ -68,6 +65,25 @@ class FileActivity : BaseActivity<ActivitySpaceBinding>() {
                 }) {
                 action.invoke(true)
             }
+        }
+    }
+
+    //    @RequiresPermission(allOf = [Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE])
+    private fun isWritePermission(): Boolean {
+        return checkPermission(
+            arrayOf(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            )
+        )
+    }
+
+    //    @RequiresPermission(allOf = [Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE])
+    private fun checkAndRequestWritePermission(grantAction: () -> Unit) {
+
+//    Log.d(localClassName,"${checkAndRequestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)}")
+        checkAndRequestPermission(Manifest.permission.WRITE_CONTACTS) {
+//            Log.d(localClassName,"123")
         }
     }
 

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav"
+    app:startDestination="@id/fileFragment">
+
+    <navigation android:id="@+id/navigation"
+        app:startDestination="@id/functionFragment">
+        <fragment
+            android:id="@+id/functionFragment"
+            android:name="bean.sample.kotlin.FunctionFragment"
+            android:label="FunctionFragment" />
+        <fragment
+            android:id="@+id/fileFragment"
+            android:name="bean.sample.kotlin.FileFragment"
+            android:label="FileFragment" />
+    </navigation>
+</navigation>
